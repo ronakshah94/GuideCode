@@ -1,0 +1,37 @@
+//- body.jade
+//- This file provides the HTML body part.
+body
+  table
+    tr
+      td(style= "width:30%;")
+        img(src="/images/newapp-icon.png")
+      td
+        h1 Guide Code
+          small , a guide dog in code
+        p  Guide Code is a web application that's targetted to assist the visually impaired with walking just like a guide dog would. It uses OpenCV to analyze a video feed, taking single frames from it at regular intervals to detect objects in the image. The object is recognized by matching it against a dataset of known objects, and a simple text description of it is generated that is sent to IBM's BlueMix API to convert the text to a sound. Picture a visually imparied person with a wearable camera that warns the person of any objects in their way.  
+    br
+    tr
+      td(style="width:50%")
+        h2 OpenCV and image recognition
+      td
+        p For this application, we used openCV to identify features in the frames of a video feed. We implemented feature matching using C++ to compare objects in a video frame to our dataset of recognized objects to identify the objects in the video. We used a four point matching scheme to predict with certainty if the image in the video frame matches an object in our dataset. If a positive result is returned, then the application returns a text describing the image and then sends it to the python script that interfaces with the text-to-speech library in Bluemix.
+    br
+    tr 
+      td
+        h2 Python and Bluemix
+      td
+        p We created a python script that makes a GET request to the web application on the Bluemix cloud that has a text-to-speech instance bound to it. The parameters of the GET request are the text from the openCV application and a choice of the audio format that we expect from the Bluemix instance. For simplicity we make requests to get .wav formats. The script then downloads the audio file returned by the Bluemix instance and plays it using wave and PyAudio.
+    br
+    tr
+      td
+        h2 Here's the demo!
+      td
+        iframe(width='560', height='315', src='https://www.youtube.com/embed/9lrxrvmtFGU', frameborder='0',allowfullscreen='allowfullscreen')
+    br
+    tr
+      td
+        h2 Here's the pitch!
+      td
+        iframe(width='560', height='315', src='https://www.youtube.com/embed/9lrxrvmtFGU', frameborder='0',allowfullscreen='allowfullscreen')
+    br
+  footer(align="center")  Project by Omar Waheed and Ronak Shah. 
